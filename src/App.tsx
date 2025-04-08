@@ -51,28 +51,27 @@ export const App: React.FC = () => {
       <h1 className="todoapp__title">todos</h1>
       <div className="todoapp__content">
         <Header />
-
         {loading ? (
-          <Loader message={'Loading your todos...'} />
-        ) : (
+          <Loader message="Loading your todos..." />
+        ) : todos.length > 0 ? (
           <>
             <TodoList todos={filteredTodos} />
-
-            {/* Hide the footer if there are no todos */}
-            {todos.length > 0 && (
-              <Footer
-                todos={todos}
-                filterBy={filterBy}
-                setFilterBy={setFilterBy}
-              />
-            )}
+            <Footer
+              todos={todos}
+              filterBy={filterBy}
+              setFilterBy={setFilterBy}
+            />
           </>
+        ) : (
+          <p>No todos available. Add a new todo to get started!</p>
         )}
       </div>
-      <ErrorModal
-        errorMessage={errorMessage}
-        onClearError={() => setErrorMessage(Errors.DEFAULT)}
-      />
+      {errorMessage !== Errors.DEFAULT && (
+        <ErrorModal
+          errorMessage={errorMessage}
+          onClearError={() => setErrorMessage(Errors.DEFAULT)}
+        />
+      )}
     </div>
   );
 };
