@@ -62,9 +62,7 @@ export const App: React.FC = () => {
               setFilterBy={setFilterBy}
             />
           </>
-        ) : (
-          <p>No todos available. Add a new todo to get started!</p>
-        )}
+        ) : null}
       </div>
       {errorMessage !== Errors.DEFAULT && (
         <ErrorModal
